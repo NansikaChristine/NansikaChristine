@@ -14,7 +14,6 @@ public class Books {
     public String getBookName() {
         return bookName;
     }
-
     public void setBookName(String bookName) {
         this.bookName = bookName;
     }
@@ -35,6 +34,21 @@ public class Books {
         this.language = language;
     }
 
+    public static void TruncateTableBooks() {
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/books", "root", "");
+            if (connection != null) {
+                String truncateQuery = "TRUNCATE TABLE books";
+                PreparedStatement truncateStatement = connection.prepareStatement(truncateQuery);
+                truncateStatement.executeUpdate(truncateQuery);
+            }
+        }
+        catch (SQLException e) {
+            System.err.println("Can not connect to database!");
+            e.printStackTrace();
+        }
+    }
     public void Database() {
         Connection connection = null;
         try {

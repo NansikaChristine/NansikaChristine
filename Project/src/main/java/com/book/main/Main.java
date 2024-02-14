@@ -10,12 +10,13 @@ import java.io.FileInputStream;
 import java.util.List;
 
 public class Main {
-
 	public static void main(String[] args) {
 		try {
+			Books.TruncateTableBooks();
+			//ObjectMapper mapper = new XmlMapper();
+			FileInputStream inputStream = new FileInputStream("D:\\GJANAM\\Project\\Project\\src\\main\\java\\com\\book\\xmlfile\\Book.xml");
 			ObjectMapper mapper = new XmlMapper();
-			FileInputStream inputStream = new FileInputStream(new File("D:\\GJANAM\\Project\\Project\\src\\main\\java\\com\\book\\xmlfile\\Book.xml"));
-			TypeReference<List<Books>> typeReference = new TypeReference<List<Books>>() {};
+			TypeReference<List<Books>> typeReference = new TypeReference<>() {};
 			List<Books> booksList = mapper.readValue(inputStream, typeReference);
 			inputStream.close();
 
